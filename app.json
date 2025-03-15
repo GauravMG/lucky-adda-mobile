@@ -1,0 +1,47 @@
+{
+  "name": "LuckyAddaV3",
+  "displayName": "LuckyAddaV3",
+  "version": "1.0.0",
+  "orientation": "portrait",
+  "icon": "./assets/logo.png",
+  "splash": {
+    "image": "./assets/logo.png",
+    "resizeMode": "contain",
+    "backgroundColor": "#ffffff"
+  },
+  "ios": {
+    "supportsTablet": true,
+    "infoPlist": {
+      "UIStatusBarStyle": "dark-content",
+      "ITSAppUsesNonExemptEncryption": false,
+      "LSApplicationQueriesSchemes": ["tg"]
+    },
+    "bundleIdentifier": "com.luckyaddav3"
+  },
+  "android": {
+    "adaptiveIcon": {
+      "foregroundImage": "./assets/logo.png",
+      "backgroundColor": "#ffffff"
+    },
+    "package": "com.luckyaddav3",
+    "intentFilters": [
+      {
+        "action": "VIEW",
+        "data": [
+          {
+            "scheme": "tg"
+          }
+        ],
+        "category": ["BROWSABLE", "DEFAULT"]
+      }
+    ],
+    "googleServicesFile": "./google-services.json"
+  },
+  "androidStatusBar": {
+    "backgroundColor": "#FFFFFF",
+    "translucent": true
+  },
+  "web": {
+    "favicon": "./assets/logo.png"
+  }
+}
