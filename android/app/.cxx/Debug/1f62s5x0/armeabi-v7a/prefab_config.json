@@ -1,0 +1,10 @@
+{
+  "enabled": true,
+  "prefabPath": "/home/essence/.gradle/caches/modules-2/files-2.1/com.google.prefab/cli/2.1.0/aa32fec809c44fa531f01dcfb739b5b3304d3050/cli-2.1.0-all.jar",
+  "packages": [
+    "/home/essence/.gradle/caches/8.12/transforms/9bae42401364ca4653fdea700c9769b1/transformed/jetified-react-android-0.78.0-debug/prefab",
+    "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-reanimated/android/build/intermediates/prefab_package/debug/prefab",
+    "/home/essence/.gradle/caches/8.12/transforms/d29fe4adbd428832b4bbedeca43dd1f8/transformed/jetified-hermes-android-0.78.0-debug/prefab",
+    "/home/essence/.gradle/caches/8.12/transforms/1cf5d9d050c6a9e52727a4bbef8fd3ca/transformed/jetified-fbjni-0.7.0/prefab"
+  ]
+}

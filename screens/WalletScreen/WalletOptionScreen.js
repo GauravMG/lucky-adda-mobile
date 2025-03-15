@@ -188,10 +188,28 @@ const WalletOptionScreen = () => {
   };
 
   const handleWithdrawMoney = () => {
+    if (Number(stats.totalWinningBalance) <= 0) {
+      showNotification(
+        'error',
+        'Cannot Withdraw Amount!',
+        `No winning balance available to withdraw.`
+      );
+      return
+    }
+
     navigation.navigate('WithdrawMoneyScreen');
   };
 
   const openDetailsModal = () => {
+    if (Number(stats.totalWinningBalance) <= 0) {
+      showNotification(
+        'error',
+        'Cannot Convert Amount!',
+        `No winning balance available to convert.`
+      );
+      return
+    }
+
     setModalVisible(true);
   };
 

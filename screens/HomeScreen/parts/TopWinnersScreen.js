@@ -116,6 +116,8 @@ const TopWinnersScreen = () => {
           renderItem={renderItem}
         />
       )}
+
+      <View style={{ height: 80 }} />
     </ScrollView>
   );
 };
@@ -135,8 +137,9 @@ const styles = StyleSheet.create({
   card: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 15,
-    marginBottom: 10,
+    paddingHorizontal: 15,
+    paddingVertical: 7,
+    marginBottom: 15,
     borderRadius: 8,
     borderWidth: 1,
     width: '100%',

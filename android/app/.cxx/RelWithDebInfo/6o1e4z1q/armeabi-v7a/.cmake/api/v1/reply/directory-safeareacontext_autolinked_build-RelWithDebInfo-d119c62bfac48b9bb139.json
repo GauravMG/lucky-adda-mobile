@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "safeareacontext_autolinked_build",
+		"source" : "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-safe-area-context/android/src/main/jni"
+	}
+}

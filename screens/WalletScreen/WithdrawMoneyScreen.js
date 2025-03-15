@@ -153,7 +153,35 @@ const WithdrawMoneyScreen = () => {
         placeholderTextColor={theme.text}
         keyboardType="number-pad"
         value={amount}
-        onChangeText={setAmount}
+        onChangeText={(text) => {
+          if (!/^\d*\.?\d*$/.test(text)) return; // Allow only numbers and decimals
+          if (text === '') {
+            setAmount('');
+            return;
+          }
+      
+          const numericValue = parseFloat(text);
+          
+          if (isNaN(numericValue) || parseFloat(numericValue) <= 0) {
+            showNotification(
+              'error',
+              'Invalid Amount!',
+              `Please enter a valid amount.`
+            );
+            return;
+          }
+      
+          if (Number(numericValue) > Number(balance)) {
+            showNotification(
+              'error',
+              'Invalid Amount!',
+              `Withdraw amount cannot be more than current balance of ₹${balance}.`
+            );
+            return;
+          }
+
+          setAmount(text);
+        }}
       />
       <TouchableOpacity
         style={[styles.button, { backgroundColor: theme.button }]}

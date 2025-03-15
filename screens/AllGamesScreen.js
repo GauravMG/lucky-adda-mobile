@@ -4,6 +4,7 @@ import {
   RefreshControl,
   ActivityIndicator,
   ScrollView,
+  View,
 } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 
@@ -81,6 +82,8 @@ const AllGamesScreen = ({ route }) => {
         <RefreshControl refreshing={refreshing} onRefresh={refreshScreen} />
       }>
       <GameList games={data} isLive={isLive} refreshScreen={refreshScreen} />
+
+      <View style={{ height: 80 }} />
     </ScrollView>
   );
 };
@@ -88,7 +91,6 @@ const AllGamesScreen = ({ route }) => {
 const styles = StyleSheet.create({
   section: {
     flex: 1,
-    marginBottom: 30,
     padding: 20,
   },
 });

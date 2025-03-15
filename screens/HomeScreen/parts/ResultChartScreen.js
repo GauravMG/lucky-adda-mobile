@@ -138,11 +138,8 @@ const ResultChartScreen = () => {
   };
 
   return (
-    <ScrollView
-      style={[styles.container, { backgroundColor: theme.background }]}
-      refreshControl={
-        <RefreshControl refreshing={refreshing} onRefresh={refreshScreen} />
-      }>
+    <View
+      style={[styles.container, { backgroundColor: theme.background }]}>
       {/* Month & Year Picker */}
       <View style={styles.pickerContainer}>
         <Picker
@@ -183,7 +180,10 @@ const ResultChartScreen = () => {
         <ScrollView
           style={{ flex: 1 }}
           contentContainerStyle={{ flexGrow: 1 }}
-          nestedScrollEnabled>
+          nestedScrollEnabled
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={refreshScreen} />
+          }>
           <View
             style={[styles.tableContainer, { backgroundColor: theme.card }]}>
             {/* Fixed Date Column */}
@@ -269,7 +269,7 @@ const ResultChartScreen = () => {
           </View>
         </ScrollView>
       )}
-    </ScrollView>
+    </View>
   );
 };
 

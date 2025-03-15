@@ -1,0 +1,135 @@
+{
+  "buildFiles": [
+    "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/@react-native-async-storage/async-storage/android/build/generated/source/codegen/jni/CMakeLists.txt",
+    "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/@react-native-clipboard/clipboard/android/build/generated/source/codegen/jni/CMakeLists.txt",
+    "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/@react-native-community/datetimepicker/android/build/generated/source/codegen/jni/CMakeLists.txt",
+    "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/@react-native-picker/picker/android/src/main/jni/CMakeLists.txt",
+    "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-date-picker/android/build/generated/source/codegen/jni/CMakeLists.txt",
+    "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-gesture-handler/android/build/generated/source/codegen/jni/CMakeLists.txt",
+    "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-pager-view/android/build/generated/source/codegen/jni/CMakeLists.txt",
+    "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-reanimated/android/build/generated/source/codegen/jni/CMakeLists.txt",
+    "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-safe-area-context/android/src/main/jni/CMakeLists.txt",
+    "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-screens/android/src/main/jni/CMakeLists.txt",
+    "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-share/android/build/generated/source/codegen/jni/CMakeLists.txt",
+    "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-vector-icons/android/build/generated/source/codegen/jni/CMakeLists.txt",
+    "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native/ReactAndroid/cmake-utils/default-app-setup/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/home/essence/Android/Sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/android/app/.cxx/RelWithDebInfo/6o1e4z1q/armeabi-v7a",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/home/essence/Android/Sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/android/app/.cxx/RelWithDebInfo/6o1e4z1q/armeabi-v7a",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {
+    "appmodules::@6890427a1f51a3e7e1df": {
+      "toolchain": "toolchain",
+      "abi": "armeabi-v7a",
+      "artifactName": "appmodules",
+      "output": "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/android/app/build/intermediates/cxx/RelWithDebInfo/6o1e4z1q/obj/armeabi-v7a/libappmodules.so",
+      "runtimeFiles": [
+        "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/android/app/build/intermediates/cxx/RelWithDebInfo/6o1e4z1q/obj/armeabi-v7a/libreact_codegen_rnpicker.so",
+        "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/android/app/build/intermediates/cxx/RelWithDebInfo/6o1e4z1q/obj/armeabi-v7a/libreact_codegen_safeareacontext.so",
+        "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/android/app/build/intermediates/cxx/RelWithDebInfo/6o1e4z1q/obj/armeabi-v7a/libreact_codegen_rnscreens.so",
+        "/home/essence/.gradle/caches/8.12/transforms/1cf5d9d050c6a9e52727a4bbef8fd3ca/transformed/jetified-fbjni-0.7.0/prefab/modules/fbjni/libs/android.armeabi-v7a/libfbjni.so",
+        "/home/essence/.gradle/caches/8.12/transforms/31ca920f8281d5ac792927bdd9286325/transformed/jetified-react-android-0.78.0-release/prefab/modules/jsi/libs/android.armeabi-v7a/libjsi.so",
+        "/home/essence/.gradle/caches/8.12/transforms/31ca920f8281d5ac792927bdd9286325/transformed/jetified-react-android-0.78.0-release/prefab/modules/reactnative/libs/android.armeabi-v7a/libreactnative.so"
+      ]
+    },
+    "react_codegen_RNDatePickerSpecs::@c00f981c6e74346c63d4": {
+      "toolchain": "toolchain",
+      "abi": "armeabi-v7a",
+      "artifactName": "react_codegen_RNDatePickerSpecs"
+    },
+    "react_codegen_RNDateTimePickerCGen::@59b70ddc31ba2f8ef1d2": {
+      "toolchain": "toolchain",
+      "abi": "armeabi-v7a",
+      "artifactName": "react_codegen_RNDateTimePickerCGen"
+    },
+    "react_codegen_RNShareSpec::@e6c4c2b5aedb2ea213b7": {
+      "toolchain": "toolchain",
+      "abi": "armeabi-v7a",
+      "artifactName": "react_codegen_RNShareSpec"
+    },
+    "react_codegen_RNVectorIconsSpec::@479809fae146501fd34d": {
+      "toolchain": "toolchain",
+      "abi": "armeabi-v7a",
+      "artifactName": "react_codegen_RNVectorIconsSpec"
+    },
+    "react_codegen_pagerview::@7032a8921530ec438d60": {
+      "toolchain": "toolchain",
+      "abi": "armeabi-v7a",
+      "artifactName": "react_codegen_pagerview"
+    },
+    "react_codegen_rnasyncstorage::@1596841e19ec5b9eeffe": {
+      "toolchain": "toolchain",
+      "abi": "armeabi-v7a",
+      "artifactName": "react_codegen_rnasyncstorage"
+    },
+    "react_codegen_rnclipboard::@6385240493dfcaf22ab7": {
+      "toolchain": "toolchain",
+      "abi": "armeabi-v7a",
+      "artifactName": "react_codegen_rnclipboard"
+    },
+    "react_codegen_rngesturehandler_codegen::@39f233abcd2c728bc6ec": {
+      "toolchain": "toolchain",
+      "abi": "armeabi-v7a",
+      "artifactName": "react_codegen_rngesturehandler_codegen"
+    },
+    "react_codegen_rnpicker::@e8bb2e9e833f47d0d516": {
+      "toolchain": "toolchain",
+      "abi": "armeabi-v7a",
+      "artifactName": "react_codegen_rnpicker",
+      "output": "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/android/app/build/intermediates/cxx/RelWithDebInfo/6o1e4z1q/obj/armeabi-v7a/libreact_codegen_rnpicker.so",
+      "runtimeFiles": [
+        "/home/essence/.gradle/caches/8.12/transforms/31ca920f8281d5ac792927bdd9286325/transformed/jetified-react-android-0.78.0-release/prefab/modules/reactnative/libs/android.armeabi-v7a/libreactnative.so",
+        "/home/essence/.gradle/caches/8.12/transforms/31ca920f8281d5ac792927bdd9286325/transformed/jetified-react-android-0.78.0-release/prefab/modules/jsi/libs/android.armeabi-v7a/libjsi.so",
+        "/home/essence/.gradle/caches/8.12/transforms/1cf5d9d050c6a9e52727a4bbef8fd3ca/transformed/jetified-fbjni-0.7.0/prefab/modules/fbjni/libs/android.armeabi-v7a/libfbjni.so"
+      ]
+    },
+    "react_codegen_rnreanimated::@8afabad14bfffa3f8b9a": {
+      "toolchain": "toolchain",
+      "abi": "armeabi-v7a",
+      "artifactName": "react_codegen_rnreanimated"
+    },
+    "react_codegen_rnscreens::@25bcbd507e98d3a854ad": {
+      "toolchain": "toolchain",
+      "abi": "armeabi-v7a",
+      "artifactName": "react_codegen_rnscreens",
+      "output": "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/android/app/build/intermediates/cxx/RelWithDebInfo/6o1e4z1q/obj/armeabi-v7a/libreact_codegen_rnscreens.so",
+      "runtimeFiles": [
+        "/home/essence/.gradle/caches/8.12/transforms/31ca920f8281d5ac792927bdd9286325/transformed/jetified-react-android-0.78.0-release/prefab/modules/reactnative/libs/android.armeabi-v7a/libreactnative.so",
+        "/home/essence/.gradle/caches/8.12/transforms/31ca920f8281d5ac792927bdd9286325/transformed/jetified-react-android-0.78.0-release/prefab/modules/jsi/libs/android.armeabi-v7a/libjsi.so",
+        "/home/essence/.gradle/caches/8.12/transforms/1cf5d9d050c6a9e52727a4bbef8fd3ca/transformed/jetified-fbjni-0.7.0/prefab/modules/fbjni/libs/android.armeabi-v7a/libfbjni.so"
+      ]
+    },
+    "react_codegen_safeareacontext::@7984cd80db47aa7b952a": {
+      "toolchain": "toolchain",
+      "abi": "armeabi-v7a",
+      "artifactName": "react_codegen_safeareacontext",
+      "output": "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/android/app/build/intermediates/cxx/RelWithDebInfo/6o1e4z1q/obj/armeabi-v7a/libreact_codegen_safeareacontext.so",
+      "runtimeFiles": [
+        "/home/essence/.gradle/caches/8.12/transforms/1cf5d9d050c6a9e52727a4bbef8fd3ca/transformed/jetified-fbjni-0.7.0/prefab/modules/fbjni/libs/android.armeabi-v7a/libfbjni.so",
+        "/home/essence/.gradle/caches/8.12/transforms/31ca920f8281d5ac792927bdd9286325/transformed/jetified-react-android-0.78.0-release/prefab/modules/jsi/libs/android.armeabi-v7a/libjsi.so",
+        "/home/essence/.gradle/caches/8.12/transforms/31ca920f8281d5ac792927bdd9286325/transformed/jetified-react-android-0.78.0-release/prefab/modules/reactnative/libs/android.armeabi-v7a/libreactnative.so"
+      ]
+    }
+  },
+  "toolchains": {
+    "toolchain": {
+      "cCompilerExecutable": "/home/essence/Android/Sdk/ndk/27.1.12297006/toolchains/llvm/prebuilt/linux-x86_64/bin/clang.lld",
+      "cppCompilerExecutable": "/home/essence/Android/Sdk/ndk/27.1.12297006/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++.lld"
+    }
+  },
+  "cFileExtensions": [],
+  "cppFileExtensions": [
+    "cpp"
+  ]
+}

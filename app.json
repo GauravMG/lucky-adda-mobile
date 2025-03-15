@@ -1,6 +1,6 @@
 {
-  "name": "LuckyAddaV3",
-  "displayName": "LuckyAddaV3",
+  "name": "Lucky Adda",
+  "displayName": "Lucky Adda",
   "version": "1.0.0",
   "orientation": "portrait",
   "icon": "./assets/logo.png",
@@ -16,20 +16,20 @@
       "ITSAppUsesNonExemptEncryption": false,
       "LSApplicationQueriesSchemes": ["tg"]
     },
-    "bundleIdentifier": "com.luckyaddav3"
+    "bundleIdentifier": "undefined"
   },
   "android": {
     "adaptiveIcon": {
       "foregroundImage": "./assets/logo.png",
       "backgroundColor": "#ffffff"
     },
-    "package": "com.luckyaddav3",
+    "package": "undefined",
     "intentFilters": [
       {
         "action": "VIEW",
         "data": [
           {
-            "scheme": "tg"
+            "scheme": "luckyadda"
           }
         ],
         "category": ["BROWSABLE", "DEFAULT"]

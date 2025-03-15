@@ -4,6 +4,7 @@ import {
   ActivityIndicator,
   ScrollView,
   RefreshControl,
+  View,
 } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 
@@ -81,6 +82,8 @@ const AllResultsScreen = ({ route }) => {
         <RefreshControl refreshing={refreshing} onRefresh={refreshScreen} />
       }>
       <ResultList results={data} isLive={isLive} />
+
+      <View style={{ height: 80 }} />
     </ScrollView>
   );
 };
@@ -89,7 +92,6 @@ const styles = StyleSheet.create({
   section: {
     flex: 1,
     padding: 20,
-    marginBottom: 30,
   },
 });
 
