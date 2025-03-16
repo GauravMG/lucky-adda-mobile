@@ -3,12 +3,14 @@ import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 
 import { useTheme } from '../context/ThemeContext';
+import { useBalance } from '../context/BalanceContext';
 import { fetchUserCurrentBalance } from '../hooks/userBalance';
 import { formatINR } from '../utils/textHelper';
 
 const UserBalanceHeader = () => {
   const navigation = useNavigation();
   const { theme } = useTheme();
+  const { refreshTrigger } = useBalance();
 
   const [balance, setBalance] = useState(0);
 
@@ -24,7 +26,7 @@ const UserBalanceHeader = () => {
       };
 
       getUserBalance();
-    }, [navigation])
+    }, [refreshTrigger])
   );
 
   return (

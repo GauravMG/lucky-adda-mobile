@@ -18,6 +18,7 @@ import utc from 'dayjs/plugin/utc';
 dayjs.extend(utc);
 
 import { useTheme } from '../../context/ThemeContext';
+import { useBalance } from "../../context/BalanceContext";
 import { fetchWalletList } from '../../services/walletService';
 import { formatDateTime12HourWithoutnewlineShortMonth } from '../../utils/timeHelper';
 import { formatToTwoDigits, formatINR } from '../../utils/textHelper';
@@ -26,6 +27,7 @@ import { getItem } from '../../utils/storage';
 const WalletScreen = () => {
   const navigation = useNavigation();
   const { theme } = useTheme();
+  const { triggerBalanceRefresh } = useBalance();
 
   const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -57,6 +59,7 @@ const WalletScreen = () => {
 
   const refreshScreen = () => {
     setRefreshing(true);
+    triggerBalanceRefresh();
     setTimeout(() => {
       setRefreshing(false);
     }, 1000);

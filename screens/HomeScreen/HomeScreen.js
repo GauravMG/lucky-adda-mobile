@@ -3,6 +3,7 @@ import { ScrollView, StyleSheet, RefreshControl, View } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 
 import { useTheme } from '../../context/ThemeContext';
+import { useBalance } from "../../context/BalanceContext";
 import BannerReferAndEarn from './parts/BannerReferAndEarn';
 import GameSection from './parts/GameSection';
 import ResultSection from './parts/ResultSection';
@@ -17,11 +18,13 @@ import { removeItem } from '../../utils/storage';
 
 const Home = ({ ...props }) => {
   const { theme } = useTheme();
+  const { triggerBalanceRefresh } = useBalance();
 
   const [refreshing, setRefreshing] = useState(false);
 
   const refreshScreen = () => {
     setRefreshing(true);
+    triggerBalanceRefresh();
     setTimeout(() => {
       setRefreshing(false);
     }, 1000);

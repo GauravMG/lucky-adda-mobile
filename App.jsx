@@ -21,6 +21,7 @@ import { getItem } from './utils/storage';
 import { navigationRef } from './utils/navigation';
 
 import UserBalanceHeader from './components/UserBalanceHeader';
+import { BalanceProvider } from './context/BalanceContext';
 
 import LoginScreen from './screens/AuthScreen/LoginScreen';
 import RegisterScreen from './screens/AuthScreen/RegisterScreen';
@@ -344,198 +345,200 @@ const App = () => {
   }
 
   return (
-    <NotificationProvider>
-      <ThemeProvider>
-        <SafeAreaView style={{ flex: 1 }}>
-          <StatusBar
-            barStyle="dark-content"
-            backgroundColor="transparent"
-            translucent
-          />
+    <BalanceProvider>
+      <NotificationProvider>
+        <ThemeProvider>
+          <SafeAreaView style={{ flex: 1 }}>
+            <StatusBar
+              barStyle="dark-content"
+              backgroundColor="transparent"
+              translucent
+            />
 
-          <NavigationContainer ref={navigationRef}>
-            <Stack.Navigator initialRouteName={initialRoute}>
-              <Stack.Screen name="LoginScreen" options={{ headerShown: false }}>
-                {(props) => <AuthStack {...props} />}
-              </Stack.Screen>
-              <Stack.Screen name="HomeScreen" options={{ headerShown: false }}>
-                {(props) => <HomeTabNavigator {...props} />}
-              </Stack.Screen>
-              <Stack.Screen
-                name="AllResultsScreen"
-                component={AllResultsScreen}
-                options={({ route }) => {
-                  const { theme } = useTheme();
+            <NavigationContainer ref={navigationRef}>
+              <Stack.Navigator initialRouteName={initialRoute}>
+                <Stack.Screen name="LoginScreen" options={{ headerShown: false }}>
+                  {(props) => <AuthStack {...props} />}
+                </Stack.Screen>
+                <Stack.Screen name="HomeScreen" options={{ headerShown: false }}>
+                  {(props) => <HomeTabNavigator {...props} />}
+                </Stack.Screen>
+                <Stack.Screen
+                  name="AllResultsScreen"
+                  component={AllResultsScreen}
+                  options={({ route }) => {
+                    const { theme } = useTheme();
 
-                  return {
-                    headerShown: true,
-                    headerStyle: {
-                      backgroundColor: theme.toggleBackground,
-                    },
-                    headerTintColor: theme.text,
-                    title: route.params?.title || 'Live Results',
-                    headerRight: () => <UserBalanceHeader />,
-                  };
-                }}
-              />
-              <Stack.Screen
-                name="AllGamesScreen"
-                component={AllGamesScreen}
-                options={({ route }) => {
-                  const { theme } = useTheme();
+                    return {
+                      headerShown: true,
+                      headerStyle: {
+                        backgroundColor: theme.toggleBackground,
+                      },
+                      headerTintColor: theme.text,
+                      title: route.params?.title || 'Live Results',
+                      headerRight: () => <UserBalanceHeader />,
+                    };
+                  }}
+                />
+                <Stack.Screen
+                  name="AllGamesScreen"
+                  component={AllGamesScreen}
+                  options={({ route }) => {
+                    const { theme } = useTheme();
 
-                  return {
-                    headerShown: true,
-                    headerStyle: {
-                      backgroundColor: theme.toggleBackground,
-                    },
-                    headerTintColor: theme.text,
-                    title: route.params?.title || 'Live Games',
-                    headerRight: () => <UserBalanceHeader />,
-                  };
-                }}
-              />
-              <Stack.Screen
-                name="GameScreen"
-                component={GameScreen}
-                options={({ route }) => {
-                  const { theme } = useTheme();
+                    return {
+                      headerShown: true,
+                      headerStyle: {
+                        backgroundColor: theme.toggleBackground,
+                      },
+                      headerTintColor: theme.text,
+                      title: route.params?.title || 'Live Games',
+                      headerRight: () => <UserBalanceHeader />,
+                    };
+                  }}
+                />
+                <Stack.Screen
+                  name="GameScreen"
+                  component={GameScreen}
+                  options={({ route }) => {
+                    const { theme } = useTheme();
 
-                  return {
-                    headerShown: true,
-                    headerStyle: {
-                      backgroundColor: theme.toggleBackground,
-                    },
-                    headerTintColor: theme.text,
-                    title: route.params?.title || 'Play Game',
-                    headerRight: () => <UserBalanceHeader />,
-                  };
-                }}
-              />
-              <Stack.Screen
-                name="PlaceBetScreen"
-                component={PlaceBetScreen}
-                options={({ route }) => {
-                  const { theme } = useTheme();
+                    return {
+                      headerShown: true,
+                      headerStyle: {
+                        backgroundColor: theme.toggleBackground,
+                      },
+                      headerTintColor: theme.text,
+                      title: route.params?.title || 'Play Game',
+                      headerRight: () => <UserBalanceHeader />,
+                    };
+                  }}
+                />
+                <Stack.Screen
+                  name="PlaceBetScreen"
+                  component={PlaceBetScreen}
+                  options={({ route }) => {
+                    const { theme } = useTheme();
 
-                  return {
-                    headerShown: true,
-                    headerStyle: {
-                      backgroundColor: theme.toggleBackground,
-                    },
-                    headerTintColor: theme.text,
-                    title: route.params?.title || 'Place Bet',
-                    headerRight: () => <UserBalanceHeader />,
-                  };
-                }}
-              />
-              <Stack.Screen
-                name="ResultChartScreen"
-                component={ResultChartScreen}
-                options={({ route }) => {
-                  const { theme } = useTheme();
+                    return {
+                      headerShown: true,
+                      headerStyle: {
+                        backgroundColor: theme.toggleBackground,
+                      },
+                      headerTintColor: theme.text,
+                      title: route.params?.title || 'Place Bet',
+                      headerRight: () => <UserBalanceHeader />,
+                    };
+                  }}
+                />
+                <Stack.Screen
+                  name="ResultChartScreen"
+                  component={ResultChartScreen}
+                  options={({ route }) => {
+                    const { theme } = useTheme();
 
-                  return {
-                    headerShown: true,
-                    headerStyle: {
-                      backgroundColor: theme.toggleBackground,
-                    },
-                    headerTintColor: theme.text,
-                    title: route.params?.title || 'Results Chart',
-                    headerRight: () => <UserBalanceHeader />,
-                  };
-                }}
-              />
-              <Stack.Screen
-                name="TopWinnersScreen"
-                component={TopWinnersScreen}
-                options={({ route }) => {
-                  const { theme } = useTheme();
+                    return {
+                      headerShown: true,
+                      headerStyle: {
+                        backgroundColor: theme.toggleBackground,
+                      },
+                      headerTintColor: theme.text,
+                      title: route.params?.title || 'Results Chart',
+                      headerRight: () => <UserBalanceHeader />,
+                    };
+                  }}
+                />
+                <Stack.Screen
+                  name="TopWinnersScreen"
+                  component={TopWinnersScreen}
+                  options={({ route }) => {
+                    const { theme } = useTheme();
 
-                  return {
-                    headerShown: true,
-                    headerStyle: {
-                      backgroundColor: theme.toggleBackground,
-                    },
-                    headerTintColor: theme.text,
-                    title: route.params?.title || 'Top Winners',
-                    headerRight: () => <UserBalanceHeader />,
-                  };
-                }}
-              />
-              <Stack.Screen
-                name="MoreScreen"
-                component={MoreScreen}
-                options={({ route }) => {
-                  const { theme } = useTheme();
+                    return {
+                      headerShown: true,
+                      headerStyle: {
+                        backgroundColor: theme.toggleBackground,
+                      },
+                      headerTintColor: theme.text,
+                      title: route.params?.title || 'Top Winners',
+                      headerRight: () => <UserBalanceHeader />,
+                    };
+                  }}
+                />
+                <Stack.Screen
+                  name="MoreScreen"
+                  component={MoreScreen}
+                  options={({ route }) => {
+                    const { theme } = useTheme();
 
-                  return {
-                    headerShown: true,
-                    headerStyle: {
-                      backgroundColor: theme.toggleBackground,
-                    },
-                    headerTintColor: theme.text,
-                    title: route.params?.title || 'More',
-                    headerRight: () => <UserBalanceHeader />,
-                  };
-                }}
-              />
-              <Stack.Screen
-                name="AddMoneyScreen"
-                component={AddMoneyScreen}
-                options={({ route }) => {
-                  const { theme } = useTheme();
+                    return {
+                      headerShown: true,
+                      headerStyle: {
+                        backgroundColor: theme.toggleBackground,
+                      },
+                      headerTintColor: theme.text,
+                      title: route.params?.title || 'More',
+                      headerRight: () => <UserBalanceHeader />,
+                    };
+                  }}
+                />
+                <Stack.Screen
+                  name="AddMoneyScreen"
+                  component={AddMoneyScreen}
+                  options={({ route }) => {
+                    const { theme } = useTheme();
 
-                  return {
-                    headerShown: true,
-                    headerStyle: {
-                      backgroundColor: theme.toggleBackground,
-                    },
-                    headerTintColor: theme.text,
-                    title: route.params?.title || 'Add Money',
-                    headerRight: () => <UserBalanceHeader />,
-                  };
-                }}
-              />
-              <Stack.Screen
-                name="WalletOptionScreen"
-                component={WalletOptionScreen}
-                options={({ route }) => {
-                  const { theme } = useTheme();
+                    return {
+                      headerShown: true,
+                      headerStyle: {
+                        backgroundColor: theme.toggleBackground,
+                      },
+                      headerTintColor: theme.text,
+                      title: route.params?.title || 'Add Money',
+                      headerRight: () => <UserBalanceHeader />,
+                    };
+                  }}
+                />
+                <Stack.Screen
+                  name="WalletOptionScreen"
+                  component={WalletOptionScreen}
+                  options={({ route }) => {
+                    const { theme } = useTheme();
 
-                  return {
-                    headerShown: true,
-                    headerStyle: {
-                      backgroundColor: theme.toggleBackground,
-                    },
-                    headerTintColor: theme.text,
-                    title: route.params?.title || 'Wallet Options',
-                    headerRight: () => <UserBalanceHeader />,
-                  };
-                }}
-              />
-              <Stack.Screen
-                name="WithdrawMoneyScreen"
-                component={WithdrawMoneyScreen}
-                options={({ route }) => {
-                  const { theme } = useTheme();
+                    return {
+                      headerShown: true,
+                      headerStyle: {
+                        backgroundColor: theme.toggleBackground,
+                      },
+                      headerTintColor: theme.text,
+                      title: route.params?.title || 'Wallet Options',
+                      headerRight: () => <UserBalanceHeader />,
+                    };
+                  }}
+                />
+                <Stack.Screen
+                  name="WithdrawMoneyScreen"
+                  component={WithdrawMoneyScreen}
+                  options={({ route }) => {
+                    const { theme } = useTheme();
 
-                  return {
-                    headerShown: true,
-                    headerStyle: {
-                      backgroundColor: theme.toggleBackground,
-                    },
-                    headerTintColor: theme.text,
-                    title: route.params?.title || 'Withdraw Money',
-                    headerRight: () => <UserBalanceHeader />,
-                  };
-                }}
-              />
-            </Stack.Navigator>
-          </NavigationContainer>
-        </SafeAreaView>
-      </ThemeProvider>
-    </NotificationProvider>
+                    return {
+                      headerShown: true,
+                      headerStyle: {
+                        backgroundColor: theme.toggleBackground,
+                      },
+                      headerTintColor: theme.text,
+                      title: route.params?.title || 'Withdraw Money',
+                      headerRight: () => <UserBalanceHeader />,
+                    };
+                  }}
+                />
+              </Stack.Navigator>
+            </NavigationContainer>
+          </SafeAreaView>
+        </ThemeProvider>
+      </NotificationProvider>
+    </BalanceProvider>
   );
 };
 

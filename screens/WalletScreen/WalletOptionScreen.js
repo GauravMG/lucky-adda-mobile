@@ -14,6 +14,7 @@ import { useNavigation, useFocusEffect } from '@react-navigation/native';
 
 import { useTheme } from '../../context/ThemeContext';
 import { useNotification } from '../../context/NotificationContext';
+import { useBalance } from "../../context/BalanceContext";
 import { fetchWalletList, convertAmount } from '../../services/walletService';
 import { formatToTwoDigits, formatINR } from '../../utils/textHelper';
 import { getItem } from '../../utils/storage';
@@ -22,6 +23,7 @@ const WalletOptionScreen = () => {
   const navigation = useNavigation();
   const { theme } = useTheme();
   const showNotification = useNotification();
+  const { triggerBalanceRefresh } = useBalance();
 
   const initialStats = {
     totalbalance: 0,
@@ -64,6 +66,7 @@ const WalletOptionScreen = () => {
 
   const refreshScreen = () => {
     setRefreshing(true);
+    triggerBalanceRefresh();
     setTimeout(() => {
       setRefreshing(false);
     }, 1000);
@@ -215,6 +218,7 @@ const WalletOptionScreen = () => {
 
   const closeDetailsModal = () => {
     setAmountToConvert(0);
+    setIsSubmitting(false);
     setModalVisible(false);
     loadData();
   };

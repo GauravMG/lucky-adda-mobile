@@ -12,11 +12,13 @@ import {
 import { useFocusEffect } from '@react-navigation/native';
 
 import { useTheme } from '../../../context/ThemeContext';
+import { useBalance } from "../../../context/BalanceContext";
 import { fetchTopWinners } from '../../../services/walletService';
 import { formatINR } from '../../../utils/textHelper';
 
 const TopWinnersScreen = () => {
   const { theme } = useTheme();
+  const { triggerBalanceRefresh } = useBalance();
 
   const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -36,6 +38,7 @@ const TopWinnersScreen = () => {
 
   const refreshScreen = () => {
     setRefreshing(true);
+    triggerBalanceRefresh();
     setTimeout(() => {
       setRefreshing(false);
     }, 1000);

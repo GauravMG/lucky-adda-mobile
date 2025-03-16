@@ -21,6 +21,7 @@ dayjs.extend(utc);
 
 import { useTheme } from '../context/ThemeContext';
 import { useNotification } from '../context/NotificationContext';
+import { useBalance } from "../context/BalanceContext";
 import { fetchUserBetList } from '../services/gameService';
 import {
   formatDateOnly,
@@ -63,6 +64,7 @@ const BidHistoryScreen = () => {
   const navigation = useNavigation();
   const { theme } = useTheme();
   const showNotification = useNotification();
+  const { triggerBalanceRefresh } = useBalance();
 
   const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -99,6 +101,7 @@ const BidHistoryScreen = () => {
 
   const refreshScreen = () => {
     setRefreshing(true);
+    triggerBalanceRefresh();
     setTimeout(() => {
       setRefreshing(false);
     }, 1000);

@@ -12,6 +12,7 @@ import { Picker } from '@react-native-picker/picker';
 import moment from 'moment';
 
 import { useTheme } from '../../../context/ThemeContext';
+import { useBalance } from "../../../context/BalanceContext";
 import { fetchResultChartList } from '../../../services/gameService';
 
 // Get current month and year
@@ -25,6 +26,7 @@ function toTwoDigits(number) {
 
 const ResultChartScreen = () => {
   const { theme } = useTheme();
+  const { triggerBalanceRefresh } = useBalance();
 
   const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -52,6 +54,7 @@ const ResultChartScreen = () => {
 
   const refreshScreen = () => {
     setRefreshing(true);
+    triggerBalanceRefresh();
     setTimeout(() => {
       setRefreshing(false);
     }, 1000);

@@ -9,6 +9,7 @@ import {
 import { useFocusEffect } from '@react-navigation/native';
 
 import { useTheme } from '../context/ThemeContext';
+import { useBalance } from "../context/BalanceContext";
 import GameList from '../components/GameList';
 import { fetchGameList } from '../services/gameService';
 
@@ -16,6 +17,7 @@ const AllGamesScreen = ({ route }) => {
   const { isLive } = route.params || {};
 
   const { theme } = useTheme();
+  const { triggerBalanceRefresh } = useBalance();
 
   const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -29,6 +31,7 @@ const AllGamesScreen = ({ route }) => {
 
   const refreshScreen = () => {
     setRefreshing(true);
+    triggerBalanceRefresh();
     setTimeout(() => {
       setRefreshing(false);
     }, 1000);
