@@ -11,6 +11,10 @@
             <action android:name="android.intent.action.VIEW" />
             <data android:scheme="tg" />
         </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="luckyadda" />
+        </intent>
     </queries>
 
     <application
@@ -44,6 +48,17 @@
             <category android:name="android.intent.category.BROWSABLE" />
             <data android:scheme="tg" />
         </intent-filter>
+
+        <!-- Deep linking for UPI callback -->
+        <intent-filter android:autoVerify="true">
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data
+                android:scheme="luckyadda"
+                android:host="payment-callback" />
+        </intent-filter>
+        
       </activity>
 
       <!-- Firebase Messaging Service -->

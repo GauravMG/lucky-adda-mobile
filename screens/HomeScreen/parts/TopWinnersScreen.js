@@ -105,6 +105,7 @@ const TopWinnersScreen = () => {
 
   return (
     <ScrollView
+      contentContainerStyle={{ flexGrow: 1, justifyContent: 'flex-start' }}
       style={[styles.container, { backgroundColor: theme.background }]}
       refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={refreshScreen} />
@@ -127,7 +128,6 @@ const TopWinnersScreen = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     padding: 20,
   },
   loader: {

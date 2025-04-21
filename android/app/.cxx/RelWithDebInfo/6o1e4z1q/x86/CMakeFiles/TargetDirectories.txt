@@ -13,6 +13,9 @@
 /var/www/html/gaurav/lucky-adda/lucky-adda-mobile/android/app/.cxx/RelWithDebInfo/6o1e4z1q/x86/rnpicker_autolinked_build/CMakeFiles/react_codegen_rnpicker.dir
 /var/www/html/gaurav/lucky-adda/lucky-adda-mobile/android/app/.cxx/RelWithDebInfo/6o1e4z1q/x86/rnpicker_autolinked_build/CMakeFiles/edit_cache.dir
 /var/www/html/gaurav/lucky-adda/lucky-adda-mobile/android/app/.cxx/RelWithDebInfo/6o1e4z1q/x86/rnpicker_autolinked_build/CMakeFiles/rebuild_cache.dir
+/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/android/app/.cxx/RelWithDebInfo/6o1e4z1q/x86/rnskia_autolinked_build/CMakeFiles/react_codegen_rnskia.dir
+/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/android/app/.cxx/RelWithDebInfo/6o1e4z1q/x86/rnskia_autolinked_build/CMakeFiles/edit_cache.dir
+/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/android/app/.cxx/RelWithDebInfo/6o1e4z1q/x86/rnskia_autolinked_build/CMakeFiles/rebuild_cache.dir
 /var/www/html/gaurav/lucky-adda/lucky-adda-mobile/android/app/.cxx/RelWithDebInfo/6o1e4z1q/x86/RNDatePickerSpecs_autolinked_build/CMakeFiles/react_codegen_RNDatePickerSpecs.dir
 /var/www/html/gaurav/lucky-adda/lucky-adda-mobile/android/app/.cxx/RelWithDebInfo/6o1e4z1q/x86/RNDatePickerSpecs_autolinked_build/CMakeFiles/edit_cache.dir
 /var/www/html/gaurav/lucky-adda/lucky-adda-mobile/android/app/.cxx/RelWithDebInfo/6o1e4z1q/x86/RNDatePickerSpecs_autolinked_build/CMakeFiles/rebuild_cache.dir
@@ -37,3 +40,6 @@
 /var/www/html/gaurav/lucky-adda/lucky-adda-mobile/android/app/.cxx/RelWithDebInfo/6o1e4z1q/x86/RNVectorIconsSpec_autolinked_build/CMakeFiles/react_codegen_RNVectorIconsSpec.dir
 /var/www/html/gaurav/lucky-adda/lucky-adda-mobile/android/app/.cxx/RelWithDebInfo/6o1e4z1q/x86/RNVectorIconsSpec_autolinked_build/CMakeFiles/edit_cache.dir
 /var/www/html/gaurav/lucky-adda/lucky-adda-mobile/android/app/.cxx/RelWithDebInfo/6o1e4z1q/x86/RNVectorIconsSpec_autolinked_build/CMakeFiles/rebuild_cache.dir
+/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/android/app/.cxx/RelWithDebInfo/6o1e4z1q/x86/RNCWebViewSpec_autolinked_build/CMakeFiles/react_codegen_RNCWebViewSpec.dir
+/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/android/app/.cxx/RelWithDebInfo/6o1e4z1q/x86/RNCWebViewSpec_autolinked_build/CMakeFiles/edit_cache.dir
+/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/android/app/.cxx/RelWithDebInfo/6o1e4z1q/x86/RNCWebViewSpec_autolinked_build/CMakeFiles/rebuild_cache.dir

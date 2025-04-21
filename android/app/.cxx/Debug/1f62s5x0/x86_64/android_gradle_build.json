@@ -4,6 +4,7 @@
     "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/@react-native-clipboard/clipboard/android/build/generated/source/codegen/jni/CMakeLists.txt",
     "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/@react-native-community/datetimepicker/android/build/generated/source/codegen/jni/CMakeLists.txt",
     "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/@react-native-picker/picker/android/src/main/jni/CMakeLists.txt",
+    "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/@shopify/react-native-skia/android/build/generated/source/codegen/jni/CMakeLists.txt",
     "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-date-picker/android/build/generated/source/codegen/jni/CMakeLists.txt",
     "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-gesture-handler/android/build/generated/source/codegen/jni/CMakeLists.txt",
     "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-pager-view/android/build/generated/source/codegen/jni/CMakeLists.txt",
@@ -12,6 +13,7 @@
     "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-screens/android/src/main/jni/CMakeLists.txt",
     "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-share/android/build/generated/source/codegen/jni/CMakeLists.txt",
     "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-vector-icons/android/build/generated/source/codegen/jni/CMakeLists.txt",
+    "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-webview/android/build/generated/source/codegen/jni/CMakeLists.txt",
     "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native/ReactAndroid/cmake-utils/default-app-setup/CMakeLists.txt"
   ],
   "cleanCommandsComponents": [
@@ -42,6 +44,11 @@
         "/home/essence/.gradle/caches/8.12/transforms/9bae42401364ca4653fdea700c9769b1/transformed/jetified-react-android-0.78.0-debug/prefab/modules/jsi/libs/android.x86_64/libjsi.so",
         "/home/essence/.gradle/caches/8.12/transforms/9bae42401364ca4653fdea700c9769b1/transformed/jetified-react-android-0.78.0-debug/prefab/modules/reactnative/libs/android.x86_64/libreactnative.so"
       ]
+    },
+    "react_codegen_RNCWebViewSpec::@eb48929f9f7453740a6c": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "react_codegen_RNCWebViewSpec"
     },
     "react_codegen_RNDatePickerSpecs::@c00f981c6e74346c63d4": {
       "toolchain": "toolchain",
@@ -109,6 +116,11 @@
         "/home/essence/.gradle/caches/8.12/transforms/9bae42401364ca4653fdea700c9769b1/transformed/jetified-react-android-0.78.0-debug/prefab/modules/jsi/libs/android.x86_64/libjsi.so",
         "/home/essence/.gradle/caches/8.12/transforms/1cf5d9d050c6a9e52727a4bbef8fd3ca/transformed/jetified-fbjni-0.7.0/prefab/modules/fbjni/libs/android.x86_64/libfbjni.so"
       ]
+    },
+    "react_codegen_rnskia::@376d8504f62839611b97": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "react_codegen_rnskia"
     },
     "react_codegen_safeareacontext::@7984cd80db47aa7b952a": {
       "toolchain": "toolchain",

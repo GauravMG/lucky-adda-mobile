@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "447950015534",
+    "project_id": "lucky-adda-66b1e",
+    "storage_bucket": "lucky-adda-66b1e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:447950015534:android:bf1d6e786430150c34e3bf",
+        "android_client_info": {
+          "package_name": "com.gauravm.mg.snackd65efc3811ee4fcea1ce926f9a939e33"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCD6cbQU95pjdMp9XoGpyaLijuCs5chIBc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:447950015534:android:55d66138baf50dd434e3bf",
+        "android_client_info": {
+          "package_name": "com.luckyaddav3"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCD6cbQU95pjdMp9XoGpyaLijuCs5chIBc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

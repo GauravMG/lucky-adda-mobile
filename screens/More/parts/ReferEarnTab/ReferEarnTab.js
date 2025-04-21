@@ -24,6 +24,7 @@ const ReferEarnTab = () => {
 
   const [referralCode, setReferralCode] = useState(null);
   const [totalEarned] = useState(0);
+  const [appSettingData, setAppSettingData] = useState(null)
 
   useEffect(() => {
     const checkUserData = async () => {
@@ -34,8 +35,13 @@ const ReferEarnTab = () => {
         console.error('Error fetching JWT Token:', error);
       }
     };
+    const getAppSettingData = async () => {
+      const appMaintenanceData = await getItem('appSettingData');
+      setAppSettingData(appMaintenanceData)
+    };
 
     checkUserData();
+    getAppSettingData();
   }, []);
 
   // Function to copy referral code to clipboard
@@ -116,7 +122,7 @@ Let’s earn together! 💪`
                 styles.noteLabel,
                 { color: theme.textHighlight, fontSize: 15 },
               ]}>
-              1% Commission on Every{'\n'}
+              {appSettingData?.amountReferral}% Commission on Every{'\n'}
               Deposit, Forever Unlock{'\n'}
               Exclusive Rewards
             </Text>
@@ -200,10 +206,10 @@ Let’s earn together! 💪`
 
         <View style={[styles.noteSection, { backgroundColor: theme.card }]}>
           <Text style={[styles.noteLabel, { color: theme.primary }]}>
-            Lucky Adda App शेयर करें और 1% कमीशन पाएँ
+            Lucky Adda App शेयर करें और {appSettingData?.amountReferral}% कमीशन पाएँ
           </Text>
           <Text style={[styles.noteLabel, { color: theme.success }]}>
-            अपने दोस्त के हर डिपॉज़िट पर 1% commission
+            अपने दोस्त के हर डिपॉज़िट पर {appSettingData?.amountReferral}% commission
           </Text>
           <Text style={[styles.noteLabel, { color: theme.accent }]}>
             लाइफटाइम वैधता, अनलिमिटेड बेनिफिट्स
@@ -243,8 +249,6 @@ Let’s earn together! 💪`
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
-    // justifyContent: 'flex-start',
     paddingLeft: 20,
     paddingRight: 20,
   },

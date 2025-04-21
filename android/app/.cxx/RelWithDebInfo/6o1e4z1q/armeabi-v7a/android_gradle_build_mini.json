@@ -4,6 +4,7 @@
     "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/@react-native-clipboard/clipboard/android/build/generated/source/codegen/jni/CMakeLists.txt",
     "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/@react-native-community/datetimepicker/android/build/generated/source/codegen/jni/CMakeLists.txt",
     "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/@react-native-picker/picker/android/src/main/jni/CMakeLists.txt",
+    "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/@shopify/react-native-skia/android/build/generated/source/codegen/jni/CMakeLists.txt",
     "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-date-picker/android/build/generated/source/codegen/jni/CMakeLists.txt",
     "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-gesture-handler/android/build/generated/source/codegen/jni/CMakeLists.txt",
     "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-pager-view/android/build/generated/source/codegen/jni/CMakeLists.txt",
@@ -12,6 +13,7 @@
     "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-screens/android/src/main/jni/CMakeLists.txt",
     "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-share/android/build/generated/source/codegen/jni/CMakeLists.txt",
     "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-vector-icons/android/build/generated/source/codegen/jni/CMakeLists.txt",
+    "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-webview/android/build/generated/source/codegen/jni/CMakeLists.txt",
     "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native/ReactAndroid/cmake-utils/default-app-setup/CMakeLists.txt"
   ],
   "cleanCommandsComponents": [
@@ -49,6 +51,11 @@
       "abi": "armeabi-v7a",
       "runtimeFiles": []
     },
+    "react_codegen_RNCWebViewSpec::@eb48929f9f7453740a6c": {
+      "artifactName": "react_codegen_RNCWebViewSpec",
+      "abi": "armeabi-v7a",
+      "runtimeFiles": []
+    },
     "react_codegen_RNDateTimePickerCGen::@59b70ddc31ba2f8ef1d2": {
       "artifactName": "react_codegen_RNDateTimePickerCGen",
       "abi": "armeabi-v7a",
@@ -66,6 +73,11 @@
         "/home/essence/.gradle/caches/8.12/transforms/31ca920f8281d5ac792927bdd9286325/transformed/jetified-react-android-0.78.0-release/prefab/modules/jsi/libs/android.armeabi-v7a/libjsi.so",
         "/home/essence/.gradle/caches/8.12/transforms/31ca920f8281d5ac792927bdd9286325/transformed/jetified-react-android-0.78.0-release/prefab/modules/reactnative/libs/android.armeabi-v7a/libreactnative.so"
       ]
+    },
+    "react_codegen_rnskia::@376d8504f62839611b97": {
+      "artifactName": "react_codegen_rnskia",
+      "abi": "armeabi-v7a",
+      "runtimeFiles": []
     },
     "react_codegen_rnasyncstorage::@1596841e19ec5b9eeffe": {
       "artifactName": "react_codegen_rnasyncstorage",

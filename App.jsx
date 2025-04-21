@@ -34,6 +34,7 @@ import GameScreen from './screens/GameScreen/GameScreen';
 import PlaceBetScreen from './screens/GameScreen/PlaceBetScreen';
 import ResultChartScreen from './screens/HomeScreen/parts/ResultChartScreen';
 import TopWinnersScreen from './screens/HomeScreen/parts/TopWinnersScreen';
+import PappuPlayingPicturesScreen from './screens/HomeScreen/parts/PappuPlayingPicturesScreen'
 
 import BidHistoryScreen from './screens/BidHistoryScreen';
 
@@ -529,6 +530,23 @@ const App = () => {
                       },
                       headerTintColor: theme.text,
                       title: route.params?.title || 'Withdraw Money',
+                      headerRight: () => <UserBalanceHeader />,
+                    };
+                  }}
+                />
+                <Stack.Screen
+                  name="PappuPlayingPicturesScreen"
+                  component={PappuPlayingPicturesScreen}
+                  options={({ route }) => {
+                    const { theme } = useTheme();
+
+                    return {
+                      headerShown: true,
+                      headerStyle: {
+                        backgroundColor: theme.toggleBackground,
+                      },
+                      headerTintColor: theme.text,
+                      title: 'Pappu Playing Pictures',
                       headerRight: () => <UserBalanceHeader />,
                     };
                   }}

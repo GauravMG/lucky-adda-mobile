@@ -80,6 +80,7 @@ const AllResultsScreen = ({ route }) => {
 
   return (
     <ScrollView
+      contentContainerStyle={{ flexGrow: 1, justifyContent: 'flex-start' }}
       style={[styles.section, { backgroundColor: theme.background }]}
       refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={refreshScreen} />
@@ -93,7 +94,6 @@ const AllResultsScreen = ({ route }) => {
 
 const styles = StyleSheet.create({
   section: {
-    flex: 1,
     padding: 20,
   },
 });

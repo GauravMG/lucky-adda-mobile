@@ -118,6 +118,31 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   file(TOUCH_NOCREATE "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/android/app/.cxx/Debug/1f62s5x0/x86/CMakeFiles/cmake.verify_globs")
 endif()
 
+# react_codegen_SRCS at /var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/@shopify/react-native-skia/android/build/generated/source/codegen/jni/CMakeLists.txt:9 (file)
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/@shopify/react-native-skia/android/build/generated/source/codegen/jni/*.cpp")
+set(OLD_GLOB
+  "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/@shopify/react-native-skia/android/build/generated/source/codegen/jni/rnskia-generated.cpp"
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/android/app/.cxx/Debug/1f62s5x0/x86/CMakeFiles/cmake.verify_globs")
+endif()
+
+# react_codegen_SRCS at /var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/@shopify/react-native-skia/android/build/generated/source/codegen/jni/CMakeLists.txt:9 (file)
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/@shopify/react-native-skia/android/build/generated/source/codegen/jni/react/renderer/components/rnskia/*.cpp")
+set(OLD_GLOB
+  "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/@shopify/react-native-skia/android/build/generated/source/codegen/jni/react/renderer/components/rnskia/ComponentDescriptors.cpp"
+  "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/@shopify/react-native-skia/android/build/generated/source/codegen/jni/react/renderer/components/rnskia/EventEmitters.cpp"
+  "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/@shopify/react-native-skia/android/build/generated/source/codegen/jni/react/renderer/components/rnskia/Props.cpp"
+  "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/@shopify/react-native-skia/android/build/generated/source/codegen/jni/react/renderer/components/rnskia/ShadowNodes.cpp"
+  "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/@shopify/react-native-skia/android/build/generated/source/codegen/jni/react/renderer/components/rnskia/States.cpp"
+  "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/@shopify/react-native-skia/android/build/generated/source/codegen/jni/react/renderer/components/rnskia/rnskiaJSI-generated.cpp"
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/android/app/.cxx/Debug/1f62s5x0/x86/CMakeFiles/cmake.verify_globs")
+endif()
+
 # react_codegen_SRCS at /var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-date-picker/android/build/generated/source/codegen/jni/CMakeLists.txt:9 (file)
 file(GLOB NEW_GLOB LIST_DIRECTORIES true "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-date-picker/android/build/generated/source/codegen/jni/*.cpp")
 set(OLD_GLOB
@@ -358,6 +383,31 @@ set(OLD_GLOB
   "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-vector-icons/android/build/generated/source/codegen/jni/react/renderer/components/RNVectorIconsSpec/RNVectorIconsSpecJSI-generated.cpp"
   "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-vector-icons/android/build/generated/source/codegen/jni/react/renderer/components/RNVectorIconsSpec/ShadowNodes.cpp"
   "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-vector-icons/android/build/generated/source/codegen/jni/react/renderer/components/RNVectorIconsSpec/States.cpp"
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/android/app/.cxx/Debug/1f62s5x0/x86/CMakeFiles/cmake.verify_globs")
+endif()
+
+# react_codegen_SRCS at /var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-webview/android/build/generated/source/codegen/jni/CMakeLists.txt:9 (file)
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-webview/android/build/generated/source/codegen/jni/*.cpp")
+set(OLD_GLOB
+  "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-webview/android/build/generated/source/codegen/jni/RNCWebViewSpec-generated.cpp"
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/android/app/.cxx/Debug/1f62s5x0/x86/CMakeFiles/cmake.verify_globs")
+endif()
+
+# react_codegen_SRCS at /var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-webview/android/build/generated/source/codegen/jni/CMakeLists.txt:9 (file)
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-webview/android/build/generated/source/codegen/jni/react/renderer/components/RNCWebViewSpec/*.cpp")
+set(OLD_GLOB
+  "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-webview/android/build/generated/source/codegen/jni/react/renderer/components/RNCWebViewSpec/ComponentDescriptors.cpp"
+  "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-webview/android/build/generated/source/codegen/jni/react/renderer/components/RNCWebViewSpec/EventEmitters.cpp"
+  "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-webview/android/build/generated/source/codegen/jni/react/renderer/components/RNCWebViewSpec/Props.cpp"
+  "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-webview/android/build/generated/source/codegen/jni/react/renderer/components/RNCWebViewSpec/RNCWebViewSpecJSI-generated.cpp"
+  "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-webview/android/build/generated/source/codegen/jni/react/renderer/components/RNCWebViewSpec/ShadowNodes.cpp"
+  "/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-webview/android/build/generated/source/codegen/jni/react/renderer/components/RNCWebViewSpec/States.cpp"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")

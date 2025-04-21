@@ -1,13 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { useTheme } from '../../../context/ThemeContext';
 import { AppLogo } from '../../../App';
+import { getItem } from '../../../utils/storage';
 
 const BannerReferAndEarn = () => {
   const navigation = useNavigation();
   const { theme } = useTheme();
+
+  const [appSettingData, setAppSettingData] = useState(null)
+
+  useEffect(() => {
+    const getAppSettingData = async () => {
+      const appMaintenanceData = await getItem('appSettingData');
+      setAppSettingData(appMaintenanceData)
+    };
+
+    getAppSettingData();
+  }, []);
 
   return (
     <TouchableOpacity
@@ -63,11 +75,11 @@ const BannerReferAndEarn = () => {
         अपने दोस्तों से Lucky Adda ऐप डाउनलोड करवाएँ|
       </Text>
       <Text style={[styles.noteLabel, { color: theme.success }]}>
-        आपको हर मनी डिपॉज़िट पर लाइफ-टाइम 1% कमीशन मिलेगा|
+        आपको हर मनी डिपॉज़िट पर लाइफ-टाइम {appSettingData?.amountReferral}% कमीशन मिलेगा|
       </Text>
       <Text style={[styles.noteLabel, { color: theme.accent }]}>
         Share Lucky Adda App with friends & get{'\n'}
-        1% commission on every deposit
+        {appSettingData?.amountReferral}% commission on every deposit
       </Text>
       <Text style={[styles.noteLabel, { color: theme.textHighlight }]}>
         ज्यादा दोस्तों को Lucky Adda ऐप शेयर करें और ज्यादा पैसे कमाएँ

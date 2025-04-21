@@ -123,6 +123,7 @@ const WalletScreen = () => {
 
   return (
     <ScrollView
+      contentContainerStyle={{ flexGrow: 1, justifyContent: 'flex-start' }}
       style={[styles.container, { backgroundColor: theme.background }]}
       refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={refreshScreen} />
@@ -552,7 +553,6 @@ const WalletScreen = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     padding: 20,
   },
   title: {

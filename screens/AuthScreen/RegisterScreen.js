@@ -135,7 +135,7 @@ const RegisterScreen = () => {
 
   return (
     <ScrollView
-      style={[styles.container, { backgroundColor: theme.background }]}>
+      contentContainerStyle={[styles.container, { backgroundColor: theme.background }]}>
       <View style={styles.logoContainer}>
         <AppLogo
           logoStyles={{
@@ -260,11 +260,11 @@ const RegisterScreen = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     justifyContent: 'flex-start',
     paddingLeft: 20,
     paddingRight: 20,
     paddingTop: 70,
+    paddingBottom: 50,
   },
   logoContainer: {
     alignItems: 'center',

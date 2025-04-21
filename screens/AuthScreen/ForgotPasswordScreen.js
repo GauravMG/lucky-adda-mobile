@@ -96,6 +96,7 @@ const ForgotPasswordScreen = () => {
 
   return (
     <ScrollView
+      contentContainerStyle={{ flexGrow: 1, justifyContent: 'flex-start' }}
       style={[styles.container, { backgroundColor: theme.background }]}>
       <View style={styles.logoContainer}>
         <AppLogo
@@ -160,8 +161,6 @@ const ForgotPasswordScreen = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'flex-start',
     paddingLeft: 20,
     paddingRight: 20,
     paddingTop: 70,

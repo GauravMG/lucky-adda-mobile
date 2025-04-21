@@ -2,6 +2,7 @@
 /var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/@react-native-clipboard/clipboard/android/build/generated/source/codegen/jni/CMakeLists.txt
 /var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/@react-native-community/datetimepicker/android/build/generated/source/codegen/jni/CMakeLists.txt
 /var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/@react-native-picker/picker/android/src/main/jni/CMakeLists.txt
+/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/@shopify/react-native-skia/android/build/generated/source/codegen/jni/CMakeLists.txt
 /var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-date-picker/android/build/generated/source/codegen/jni/CMakeLists.txt
 /var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-gesture-handler/android/build/generated/source/codegen/jni/CMakeLists.txt
 /var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-pager-view/android/build/generated/source/codegen/jni/CMakeLists.txt
@@ -10,4 +11,5 @@
 /var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-screens/android/src/main/jni/CMakeLists.txt
 /var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-share/android/build/generated/source/codegen/jni/CMakeLists.txt
 /var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-vector-icons/android/build/generated/source/codegen/jni/CMakeLists.txt
+/var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native-webview/android/build/generated/source/codegen/jni/CMakeLists.txt
 /var/www/html/gaurav/lucky-adda/lucky-adda-mobile/node_modules/react-native/ReactAndroid/cmake-utils/default-app-setup/CMakeLists.txt

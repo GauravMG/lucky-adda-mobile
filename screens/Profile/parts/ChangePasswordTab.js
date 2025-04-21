@@ -163,8 +163,6 @@ const ChangePasswordTab = () => {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
-    // justifyContent: 'flex-start',
     paddingLeft: 20,
     paddingRight: 20,
   },

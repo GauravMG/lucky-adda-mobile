@@ -1,10 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 
 import { useTheme } from '../../../context/ThemeContext';
+import { getItem } from '../../../utils/storage';
 
 const RulesTab = () => {
   const { theme } = useTheme();
+
+  const [appSettingData, setAppSettingData] = useState(null)
+
+  useEffect(() => {
+    const getAppSettingData = async () => {
+      const appMaintenanceData = await getItem('appSettingData');
+      setAppSettingData(appMaintenanceData)
+    };
+
+    getAppSettingData();
+  }, []);
 
   return (
     <ScrollView
@@ -46,10 +58,10 @@ const RulesTab = () => {
             Game Rates (Bhav)
           </Text>
           <Text style={[styles.label, { color: theme.textHighlight }]}>
-            - जोड़ी रेट = 100 का 9,000
+            - जोड़ी रेट = 100 का {parseFloat(appSettingData?.amountJodi ?? 90) * 100}
           </Text>
           <Text style={[styles.label, { color: theme.textHighlight }]}>
-            - हरुप रेट = 100 का 900
+            - हरुप रेट = 100 का {parseFloat(appSettingData?.amountHarup ?? 9) * 100}
           </Text>
         </View>
       </View>
@@ -91,10 +103,10 @@ const RulesTab = () => {
             Game Rates (Bhav)
           </Text>
           <Text style={[styles.label, { color: theme.textHighlight }]}>
-            - Jodi rate = 100 ka 9,000
+            - Jodi rate = 100 ka {parseFloat(appSettingData?.amountJodi ?? 90) * 100}
           </Text>
           <Text style={[styles.label, { color: theme.textHighlight }]}>
-            - Harup rate = 100 ka 900
+            - Harup rate = 100 ka {parseFloat(appSettingData?.amountHarup ?? 9) * 100}
           </Text>
         </View>
       </View>
@@ -104,8 +116,6 @@ const RulesTab = () => {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
-    // justifyContent: 'flex-start',
     paddingLeft: 20,
     paddingRight: 20,
   },

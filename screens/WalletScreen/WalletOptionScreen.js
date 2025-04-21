@@ -42,6 +42,7 @@ const WalletOptionScreen = () => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
   const [amountToConvert, setAmountToConvert] = useState(0);
+  const [appSettingData, setAppSettingData] = useState(null)
 
   useFocusEffect(
     useCallback(() => {
@@ -53,8 +54,13 @@ const WalletOptionScreen = () => {
           console.error('Error fetching JWT Token:', error);
         }
       };
+      const getAppSettingData = async () => {
+        const appMaintenanceData = await getItem('appSettingData');
+        setAppSettingData(appMaintenanceData)
+      };
 
       checkUserData();
+      getAppSettingData();
     }, [navigation])
   );
 
@@ -231,6 +237,7 @@ const WalletOptionScreen = () => {
 
   return (
     <ScrollView
+      contentContainerStyle={{ flexGrow: 1, justifyContent: 'flex-start' }}
       style={[styles.container, { backgroundColor: theme.background }]}
       refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={refreshScreen} />
@@ -338,10 +345,10 @@ const WalletOptionScreen = () => {
               ]}>
               <Text style={[styles.text, { color: theme.textHighlight }]}>
                 यदि आप अपने जीते हुए पैसे को Deposit Balance में बदलते हैं, तो
-                आपको अभी 2% कैशबैक मिलेगा।
+                आपको अभी {appSettingData?.amountConversion}% कैशबैक मिलेगा।
               </Text>
               <Text style={[styles.text, { color: theme.textHighlight }]}>
-                Convert your winnings into Deposits for 2% Cashback
+                Convert your winnings into Deposits for {appSettingData?.amountConversion}% Cashback
               </Text>
             </View>
 
@@ -395,7 +402,6 @@ const WalletOptionScreen = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     padding: 20,
   },
   loader: {

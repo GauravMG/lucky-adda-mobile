@@ -199,6 +199,7 @@ const BidHistoryScreen = () => {
 
   return (
     <ScrollView
+      contentContainerStyle={{ flexGrow: 1, justifyContent: 'flex-start' }}
       style={[styles.container, { backgroundColor: theme.background }]}
       refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={refreshScreen} />
@@ -448,7 +449,6 @@ const BidHistoryScreen = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     padding: 20,
   },
   dateFilterContainer: {

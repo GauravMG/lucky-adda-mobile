@@ -1,19 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import React, { useEffect, useState, useRef } from 'react';
 import {
-  View,
+  Image,
+  Linking,
+  ScrollView,
+  StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
-  StyleSheet,
-  ScrollView,
-  Image,
+  View,
+  ActivityIndicator,
+  Modal,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 
-import { useTheme } from '../../context/ThemeContext';
 import { useNotification } from '../../context/NotificationContext';
+import { useTheme } from '../../context/ThemeContext';
+import { createPaymentTransaction, updatePaymentTransaction } from "../../services/paymentService";
 import { addWalletTransaction } from '../../services/walletService';
+import * as PayFromUPIServices from "../../services/payFromUPIService"
 import { getItem } from '../../utils/storage';
+import { addQuerySymbol } from "../../utils/urlHelper"
 
 const AddMoneyScreen = () => {
   const navigation = useNavigation();
@@ -23,6 +29,28 @@ const AddMoneyScreen = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [userData, setUserData] = useState(null);
   const [amount, setAmount] = useState('');
+  const [paymentModalVisible, setPaymentModalVisible] = useState(false);
+  const [paymentTransactionId, setPaymentTransactionId] = useState('');
+  const [txnId, setTxnId] = useState('')
+  const [paymentLink, setPaymentLink] = useState('')
+
+  const pollingCancelledRef = useRef(false);
+
+  useEffect(() => {
+    const handleDeepLink = (event) => {
+      const { url } = event;
+
+      if (url.includes('luckyadda://payment-callback')) {
+        pollingCancelledRef.current = false;
+      }
+    };
+
+    const linkingSubscription = Linking.addEventListener('url', handleDeepLink);
+
+    return () => {
+      linkingSubscription.remove();
+    };
+  }, []);
 
   useEffect(() => {
     const checkUserData = async () => {
@@ -30,291 +58,293 @@ const AddMoneyScreen = () => {
         const userData = await getItem('userData');
         setUserData(userData);
       } catch (error) {
-        console.error('Error fetching JWT Token:', error);
+        console.error('Error fetching user data:', error);
       }
     };
-
     checkUserData();
   }, []);
 
-  // useEffect(() => {
-  //   const handleUPIResponse = (event) => {
-  //     const { url } = event;
-  //     if (!url) return;
-
-  //     const params = new URLSearchParams(url.split('?')[1]);
-  //     const status = params.get('Status');
-  //     const txnRef = params.get('txnRef');
-  //     const txnId = params.get('txnId');
-
-  //     if (status === 'SUCCESS') {
-  //       Alert.alert('Payment Successful', `Transaction ID: ${txnId}`);
-  //     } else if (status === 'FAILURE') {
-  //       Alert.alert('Payment Failed', 'Transaction was unsuccessful.');
-  //     } else {
-  //       Alert.alert('Payment Cancelled', 'User cancelled the transaction.');
-  //     }
-  //   };
-
-  //   const subscription = Linking.addEventListener('url', handleUPIResponse);
-
-  //   return () => {
-  //     subscription.remove();
-  //   };
-  // }, []);
-
   const handleAddCoins = async () => {
-    setIsSubmitting(true);
-    if (!amount || isNaN(amount) || parseFloat(amount) <= 0) {
-      showNotification(
-        'error',
-        'Invalid Amount!',
-        `Please enter a valid amount.`
-      );
-      setIsSubmitting(false);
+    if (!amount || isNaN(amount) || parseFloat(amount) < 1) {
+      showNotification('error', 'Invalid Amount!', 'Please enter an amount more than ₹200.');
       return;
     }
 
-    if (!amount || isNaN(amount) || parseFloat(amount) < 200) {
-      showNotification(
-        'error',
-        'Invalid Amount!',
-        `Please enter an amount more than 200.`
-      );
-      setIsSubmitting(false);
-      return;
-    }
+    setIsSubmitting(true);
 
     try {
-      const { success, data } = await addWalletTransaction({
-        userId: userData.userId,
-        transactionType: 'credit',
-        amount,
-      });
+      const { success, data } = await createPaymentTransaction({ amount });
 
       if (success) {
-        showNotification(
-          'success',
-          'Deposit Successful!',
-          `Amount added to wallet.`
-        );
-        // Alert.alert('Deposit Requested', `Amount added to wallet.`);
-        setTimeout(() => navigation.goBack(), 2000);
+        setTxnId(data.txnId);
+        setPaymentTransactionId(data.paymentTransactionId);
+        setPaymentModalVisible(true);
+
+        const paymentURL = `${addQuerySymbol(data.paymentLink)}redirect_url=luckyadda://payment-callback`;
+        setPaymentLink(paymentURL);
+
+        // Start polling after opening modal
+        pollingCancelledRef.current = false;
+        pollPaymentStatus(data.txnId, data.paymentTransactionId);
+
+        // Open payment in external browser
+        Linking.openURL(paymentURL);
+      } else {
+        showNotification('error', 'Error!', 'Could not initiate payment.');
       }
     } catch (error) {
-      console.error('Failed to fetch data:', error);
+      showNotification('error', 'Transaction Failed!', error.message ?? 'Please try again.');
+    } finally {
       setIsSubmitting(false);
     }
   };
 
-  // const handleUPIPayment = async () => {
-  //   if (!amount || isNaN(amount) || parseFloat(amount) <= 0) {
-  //     Alert.alert('Invalid Amount', 'Please enter a valid amount.');
-  //     return;
-  //   }
+  const pollPaymentStatus = async (txnId, paymentTransactionId) => {
+    const maxRetries = 37;
+    // const maxRetries = 7;
+    const interval = 5000;
+    let retries = 0;
 
-  //   const UPI_ID = '8285348403@upi'; // Replace with your actual UPI ID
-  //   const TRANSACTION_ID = `TXN${Date.now()}`; // Unique transaction ID
+    const checkStatus = async () => {
+      if (pollingCancelledRef.current) return;
 
-  //   const upiUri = `upi://pay?pa=${encodeURIComponent(
-  //     UPI_ID
-  //   )}&pn=${encodeURIComponent('Your Name')}&am=${encodeURIComponent(
-  //     amount
-  //   )}&cu=INR&tr=${encodeURIComponent(TRANSACTION_ID)}&tn=${encodeURIComponent(
-  //     'Wallet Recharge'
-  //   )}`;
+      if ((txnId ?? "").toString().trim() !== "") {
+        retries++;
+        try {
+          const response = await PayFromUPIServices.checkPaymentStatus({ txn_id: txnId });
 
-  //   try {
-  //     const supported = await Linking.canOpenURL(upiUri);
-  //     if (supported) {
-  //       Linking.openURL(upiUri);
-  //     } else {
-  //       Alert.alert('Error', 'No UPI app found.');
-  //     }
-  //   } catch (error) {
-  //     Alert.alert('Payment Failed', 'Something went wrong.');
-  //     console.error('UPI Payment Error:', error);
-  //   }
-  // };
+          if (pollingCancelledRef.current) return;
+
+          let transactionStatus = "pending"
+          let additionalResponse = {}
+          if (!response.success) {
+            transactionStatus = "rejected"
+          } else {
+            if (response.data?.transaction?.status === "ongoing" && retries < maxRetries) {
+              transactionStatus = "pending"
+            } else if (response.data?.transaction?.status === "ongoing" && retries >= maxRetries) {
+              transactionStatus = "rejected"
+              additionalResponse = {
+                message: "Payment link expired as time exceeded."
+              }
+            } else if (response.data?.transaction?.status === "completed") {
+              transactionStatus = "approved"
+            } else {
+              transactionStatus = "rejected"
+            }
+          }
+
+          if (transactionStatus === "pending") {
+            setTimeout(checkStatus, interval);
+          } else {
+            await updatePaymentTransaction({
+              paymentTransactionId: parseInt(paymentTransactionId),
+              paymentStatus: transactionStatus,
+              responseJSON: {
+                response,
+                ...additionalResponse
+              }
+            });
+
+            setPaymentLink("");
+            setTxnId("");
+            setPaymentTransactionId("");
+            setPaymentModalVisible(false);
+
+            if (transactionStatus === "approved") {
+              showNotification('success', 'Payment Successful!', 'Amount added to wallet.');
+              await addCoinsToWallet();
+            } else {
+              showNotification('error', 'Payment Failed!', 'Transaction was unsuccessful.');
+            }
+          }
+        } catch (error) {
+          console.error('Error checking payment status:', error);
+          if (!pollingCancelledRef.current && retries < maxRetries) {
+            setTimeout(checkStatus, interval);
+          } else {
+            setPaymentLink("");
+            setTxnId("");
+            setPaymentTransactionId("");
+            setPaymentModalVisible(false);
+            showNotification('error', 'Status Check Failed!', 'Please try again.');
+          }
+        }
+      }
+    };
+
+    checkStatus();
+  };
+
+  const addCoinsToWallet = async () => {
+    const walletResponse = await addWalletTransaction({
+      userId: userData.userId,
+      transactionType: 'credit',
+      amount,
+    });
+
+    if (walletResponse.success) {
+      showNotification('success', 'Deposit Successful!', 'Amount added to wallet.');
+      setTimeout(() => navigation.goBack(), 2000);
+    }
+  };
 
   const handleAddDefinedAmount = (definedAmount) => {
     setAmount(definedAmount.toString());
   };
 
-  return (
-    <ScrollView
-      contentContainerStyle={{ flexGrow: 1, justifyContent: 'flex-start' }}
-      style={[styles.container, { backgroundColor: theme.background }]}>
-      <Image
-        source={{
-          uri: 'https://cdn-icons-png.flaticon.com/512/306/306384.png',
-        }}
-        style={styles.cardImage}
-        resizeMode="contain"
-      />
-      <Text style={[styles.title, { color: theme.text }]}>
-        Add Money to Wallet
-      </Text>
-      <Text style={[styles.note, { color: theme.text }]}>
-        (Note : Minimum add amount ₹ 200)
-      </Text>
-      <TextInput
-        style={[
-          styles.input,
-          {
-            backgroundColor: theme.card,
-            color: theme.text,
-            borderColor: theme.border,
-          },
-        ]}
-        placeholder="Enter Amount"
-        placeholderTextColor={theme.text}
-        keyboardType="number-pad"
-        value={amount}
-        onChangeText={setAmount}
-      />
-      <View style={styles.definedAmountsParentContainer}>
-        <TouchableOpacity
-          style={[
-            styles.definedAmountButton,
-            { backgroundColor: theme.button },
-          ]}
-          onPress={() => handleAddDefinedAmount(500)}>
-          <Text
-            style={[
-              styles.definedAmountButtonText,
-              { color: theme.buttonText },
-            ]}>
-            ₹ 500
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[
-            styles.definedAmountButton,
-            { backgroundColor: theme.button },
-          ]}
-          onPress={() => handleAddDefinedAmount(2000)}>
-          <Text
-            style={[
-              styles.definedAmountButtonText,
-              { color: theme.buttonText },
-            ]}>
-            ₹ 2,000
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[
-            styles.definedAmountButton,
-            { backgroundColor: theme.button },
-          ]}
-          onPress={() => handleAddDefinedAmount(5000)}>
-          <Text
-            style={[
-              styles.definedAmountButtonText,
-              { color: theme.buttonText },
-            ]}>
-            ₹ 5,000
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[
-            styles.definedAmountButton,
-            { backgroundColor: theme.button },
-          ]}
-          onPress={() => handleAddDefinedAmount(10000)}>
-          <Text
-            style={[
-              styles.definedAmountButtonText,
-              { color: theme.buttonText },
-            ]}>
-            ₹ 10,000
-          </Text>
-        </TouchableOpacity>
-      </View>
-      <TouchableOpacity
-        style={[styles.button, { backgroundColor: theme.button }]}
-        onPress={() => (isSubmitting ? {} : handleAddCoins())}>
-        <Text style={[styles.buttonText, { color: theme.buttonText }]}>
-          Add Amount
-        </Text>
-      </TouchableOpacity>
-      {/* <TouchableOpacity
-        style={[styles.button, { backgroundColor: theme.button }]}
-        onPress={handleUPIPayment}>
-        <Text style={[styles.buttonText, { color: theme.buttonText }]}>Pay via UPI</Text>
-      </TouchableOpacity> */}
+  const onClickCancelPayment = async () => {
+    pollingCancelledRef.current = true;
 
-      <View
-        style={[styles.noteSection, { backgroundColor: theme.cardHighlight }]}>
-        <Text style={[styles.noteLabel, { color: theme.accent }]}>
-          ₹ 2000 से ज्यादा ऐड करें Money{'\n'}
-          और 1% एक्स्ट्रा कैशबैक पाएँ!
+    try {
+      const transactionStatus = "rejected"
+
+      await updatePaymentTransaction({
+        paymentTransactionId: parseInt(paymentTransactionId),
+        paymentStatus: transactionStatus,
+        responseJSON: {
+          message: "Transaction cancelled by user."
+        }
+      });
+
+      setPaymentLink("");
+      setTxnId("");
+      setPaymentTransactionId("");
+      setPaymentModalVisible(false);
+    } catch (error) {
+      console.error("Cancel error", error);
+    }
+  }
+
+  return (
+    <>
+      <ScrollView
+        contentContainerStyle={{ flexGrow: 1, justifyContent: 'flex-start' }}
+        style={[styles.container, { backgroundColor: theme.background }]}>
+
+        <Image source={{ uri: 'https://cdn-icons-png.flaticon.com/512/306/306384.png' }}
+          style={styles.cardImage} resizeMode="contain" />
+        <Text style={[styles.title, { color: theme.text }]}>Add Money to Wallet</Text>
+        <Text style={[styles.note, { color: theme.text }]}>
+          (Note : Minimum add amount ₹ 200)
         </Text>
-        <Text style={[styles.noteLabel, { color: theme.textHighlight }]}>
-          अभी ऑफर का लाभ उठाएँ!
-        </Text>
-        <Text style={[styles.noteLabel, { color: theme.success }]}>
-          एक्स्ट्रा कैशबैक का आनंद उठाएँ!
-        </Text>
-        <Text style={[styles.noteLabel, { color: theme.primary }]}>
-          Add above ₹ 2000, get 1% extra cashback!
-        </Text>
-        <Text style={[styles.noteLabel, { color: theme.textHighlight }]}>
-          Grab the offer now!
-        </Text>
-        <Text style={[styles.noteLabel, { color: theme.success }]}>
-          Enjoy extra cashback!
-        </Text>
-        <Text style={[styles.noteLabel, { color: theme.danger }]}>
-          UPI Payments Options :
-        </Text>
-        <Text style={[styles.noteLabel, { color: theme.border }]}>
-          Google Pay (GPay), PayTM, PhonePe{'\n'}
-          BHIM UPI, Multiple Apps Supported...
-        </Text>
-      </View>
-    </ScrollView>
+        <TextInput
+          style={[styles.input, { backgroundColor: theme.card, color: theme.text, borderColor: theme.border }]}
+          placeholder="Enter Amount"
+          placeholderTextColor={theme.text}
+          keyboardType="number-pad"
+          value={amount}
+          onChangeText={setAmount}
+        />
+        <View style={styles.definedAmountsParentContainer}>
+          {[500, 2000, 5000, 10000].map((val) => (
+            <TouchableOpacity
+              key={val}
+              style={[styles.definedAmountButton, { backgroundColor: theme.button }]}
+              onPress={() => handleAddDefinedAmount(val)}>
+              <Text style={[styles.definedAmountButtonText, { color: theme.buttonText }]}>
+                ₹ {val.toLocaleString()}
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+        <TouchableOpacity
+          style={[styles.button, { backgroundColor: theme.button }]}
+          onPress={handleAddCoins}
+          disabled={isSubmitting}>
+          <Text style={[styles.buttonText, { color: theme.buttonText }]}>
+            {isSubmitting ? 'Processing...' : 'Add Amount'}
+          </Text>
+        </TouchableOpacity>
+      
+        <View
+          style={[styles.noteSection, { backgroundColor: theme.cardHighlight }]}>
+          <Text style={[styles.noteLabel, { color: theme.accent }]}>
+            ₹ 2000 से ज्यादा ऐड करें Money{'\n'}
+            और 1% एक्स्ट्रा कैशबैक पाएँ!
+          </Text>
+          <Text style={[styles.noteLabel, { color: theme.textHighlight }]}>
+            अभी ऑफर का लाभ उठाएँ!
+          </Text>
+          <Text style={[styles.noteLabel, { color: theme.success }]}>
+            एक्स्ट्रा कैशबैक का आनंद उठाएँ!
+          </Text>
+          <Text style={[styles.noteLabel, { color: theme.primary }]}>
+            Add above ₹ 2000, get 1% extra cashback!
+          </Text>
+          <Text style={[styles.noteLabel, { color: theme.textHighlight }]}>
+            Grab the offer now!
+          </Text>
+          <Text style={[styles.noteLabel, { color: theme.success }]}>
+            Enjoy extra cashback!
+          </Text>
+          <Text style={[styles.noteLabel, { color: theme.danger }]}>
+            UPI Payments Options :
+          </Text>
+          <Text style={[styles.noteLabel, { color: theme.border }]}>
+            Google Pay (GPay), PayTM, PhonePe{'\n'}
+            BHIM UPI, Multiple Apps Supported...
+          </Text>
+        </View>
+      </ScrollView>
+
+      <Modal transparent visible={paymentModalVisible} animationType="slide">
+        <View style={styles.popupOverlay}>
+          <View style={styles.popupContainer}>
+            <ActivityIndicator size="large" color={theme.text} style={styles.loader} />
+            <Text style={[styles.popupText, { color: theme.text }]}>Waiting for payment process to complete...</Text>
+          </View>
+        </View>
+      </Modal>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    // flex: 1,
-    // justifyContent: 'flex-start',
+  container: { padding: 16 },
+  cardImage: { width: '100%', height: 180, marginBottom: 20 },
+  title: { fontSize: 20, fontWeight: 'bold', textAlign: 'center' },
+  note: { textAlign: 'center', marginBottom: 10 },
+  input: { borderWidth: 1, padding: 12, borderRadius: 8, marginBottom: 20 },
+  definedAmountsParentContainer: { flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' },
+  definedAmountButton: { padding: 10, margin: 5, borderRadius: 8, width: '45%', alignItems: 'center' },
+  definedAmountButtonText: { fontSize: 16, fontWeight: '600' },
+  button: { padding: 15, borderRadius: 8, alignItems: 'center', marginTop: 20 },
+  buttonText: { fontSize: 16, fontWeight: 'bold' },
+  infoPopupOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.2)',
+    justifyContent: 'center',
+  },
+  infoPopupContainer: {
+    backgroundColor: 'rgba(0,0,0,1)',
+    borderTopWidth: 2,
+    borderBottomWidth: 2,
+    borderColor: '#FFD700',
     padding: 20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 15,
-    textAlign: 'center',
-  },
-  cardImage: {
-    width: 100,
-    height: 100,
-    marginBottom: 10,
-    borderRadius: 50,
-    overflow: 'hidden',
-    alignSelf: 'center',
-  },
-  input: {
-    width: '100%',
-    padding: 12,
-    borderRadius: 8,
-    fontSize: 16,
-    borderWidth: 1,
-    marginBottom: 15,
-    textAlign: 'center',
-  },
-  button: {
-    padding: 15,
-    borderRadius: 8,
     alignItems: 'center',
-    width: '100%',
   },
-  buttonText: {
-    fontSize: 18,
+  popupOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.1)',
+  },
+  popupContainer: {
+    backgroundColor: 'rgba(0,0,0,0.7)',
+    flex: 1,
+    padding: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    elevation: 10,
+    zIndex: 1000,
+  },
+  popupText: {
+    marginTop: 15,
+    fontSize: 20,
     fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  loader: {
+    marginVertical: 20,
   },
   note: {
     marginBottom: 10,
@@ -332,23 +362,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     marginBottom: 10,
-  },
-  definedAmountsParentContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 20,
-    width: '100%',
-  },
-  definedAmountButton: {
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    borderRadius: 8,
-    alignItems: 'center',
-  },
-  definedAmountButtonText: {
-    fontSize: 14,
-    fontWeight: 'bold',
   },
 });
 
