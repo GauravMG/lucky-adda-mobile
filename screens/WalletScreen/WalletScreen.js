@@ -587,6 +587,9 @@ const styles = StyleSheet.create({
   list: {
     paddingBottom: 20,
   },
+  modalList: {
+    maxHeight: '60%',
+  },
   bidItem: {
     padding: 20,
     marginBottom: 10,
@@ -623,6 +626,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
     borderRadius: 7,
+    height: '80%',
   },
   modalStatementDetails: {
     paddingHorizontal: 10,
